@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- ADSENSE CODE HERE -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1286130605589936"
+     crossorigin="anonymous"></script>
+</head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/src/static/mc.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1"
+    />
+    <meta
+  name="description"
+  content="A browser-based sandbox voxel game built with Three.js. Explore, build, and play directly in your browser."
+/>
+    <title>Blockcraft - Three.js</title>
+  </head>
+  <body>
+    <script type="module" src="./src/main.ts"></script>
+      
+    <div class="menu start">
+      <button id="play" class="button">Play</button>
+      <button id="save" class="button">Load Game</button>
+      <button id="setting" class="button">Setting</button>
+      <button id="feature" class="button">Guide</button>
+      <button id="exit" class="button">Exit</button>
+      
+    </div>
+
+    <div class="features hidden">
+      <p>
+        <b> Left-Click: </b> destroy block <br />
+        <b> Right-Click:</b> place block <br />
+        <b> Wheel / Number Key: </b>change block <br />
+        <b> WASD: </b>move <br />
+        <b> Space: </b>jump / fly up<br />
+        <b> Q:</b> toggle normal / dev mode <br />
+        <b> Shift:</b> sneaking / fly down <br />
+        <b> F: </b>full screen <br />
+        <b> E: </b>menu <br />
+      </p>
+      <button id="back" class="button">Back</button>
+    </div>
+
+    <div class="settings hidden">
+      <p id="distance">Render Distance: 3</p>
+      <input
+        type="range"
+        id="distance-input"
+        min="1"
+        max="8"
+        value="3"
+        step="1"
+      />
+
+      <p id="fov">Field of View: 70</p>
+      <input
+        type="range"
+        id="fov-input"
+        min="40"
+        max="100"
+        value="70"
+        step="1"
+      />
+
+      <p id="music">Music: On</p>
+      <input type="range" id="music-input" min="0" max="1" value="1" step="1" />
+
+      <br />
+      <br />
+      <button id="setting-back" class="button">Apply</button>
+    </div>
+
+    <div class="save-modal hidden">Game Saved!</div>
+    <div class="load-modal hidden">Game Loaded!</div>
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 • Built from open-source code • All rights reserved
+</div>
+
+<!-- LEGAL LINKS (BOTTOM RIGHT) -->
+<div class="legal-links" id="legalLinks">
+  <a href="/about.html">About</a>
+<a href="/privacy.html">Privacy</a>
+<a href="/contact.html">Contact</a>
+</div>
+
+
+
+<style>
+.footer {
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.legal-links {
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+  z-index: 5;
+}
+
+.legal-links a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.legal-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+
+
+.hidden {
+  display: none;
+}
+</style>
+
+<script>
+// HIDE LINKS WHEN PLAY IS CLICKED
+window.addEventListener("load", () => {
+  const playBtn = document.getElementById("play");
+  const legal = document.getElementById("legalLinks");
+  const footer = document.querySelector(".footer");
+
+  // Hide when game starts
+  if (playBtn) {
+    playBtn.addEventListener("click", () => {
+      if (legal) legal.style.display = "none";
+      if (footer) footer.style.display = "none";
+    });
+  }
+
+  // Detect exit from game (pointer lock released)
+  document.addEventListener("pointerlockchange", () => {
+    if (!document.pointerLockElement) {
+      // Game exited → show UI again
+      if (legal) legal.style.display = "flex";
+      if (footer) footer.style.display = "block";
+    }
+  });
+});</script>
+  </body>
+</html>
